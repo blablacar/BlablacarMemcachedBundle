@@ -1,0 +1,19 @@
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="blablacar_memcached.client.logger.class">Blablacar\MemcachedBundle\Memcached\ClientLogger</parameter>
+        <parameter key="blablacar_memcached.data_collector.class">Blablacar\MemcachedBundle\DataCollector\MemcachedDataCollector</parameter>
+    </parameters>
+
+    <services>
+        <service id="blablacar_memcached.client.logger" class="%blablacar_memcached.client.logger.class%">
+            <argument />
+        </service>
+
+        <service id="blablacar_memcached.data_collector" class="%blablacar_memcached.data_collector.class%" public="false">
+            <tag name="data_collector" template="BlablacarMemcachedBundle:Collector:memcached" id="memcached" />
+        </service>
+    </services>
+</container>
