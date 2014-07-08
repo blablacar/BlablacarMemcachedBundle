@@ -27,12 +27,13 @@ class Configuration implements ConfigurationInterface
                         ->children()
                             ->scalarNode('persistent_id')->defaultValue(null)->end()
                             ->arrayNode('servers')
+                                ->isRequired()
+                                ->requiresAtLeastOneElement()
                                 ->prototype('scalar')->defaultValue('127.0.0.1:11211')->cannotBeEmpty()->end()
                             ->end()
                         ->end()
                     ->end()
                 ->end()
-                ->booleanNode('enable_logger')->defaultTrue()->end()
             ->end()
         ;
 
