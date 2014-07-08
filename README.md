@@ -22,6 +22,30 @@ package into your `composer.json` file:
 [`blablacar/memcached-bundle`](https://packagist.org/packages/blablacar/memcached-bundle)
 page to choose a stable version to use, avoid the `@stable` meta constraint.
 
+Update `app/AppKernel.php`:
+
+```php
+public function registerBundles()
+{
+    $bundles = array(
+        // ...
+        new Blablacar\MemcachedBundle\BlablacarMemcachedBundle(),
+    );
+
+    return $bundles;
+}
+```
+
+## Configuration reference
+
+```yml
+blablacar_memcached:
+    clients:
+        my_client_name:
+            persistent_id: ~
+            servers:       ['127.0.0.1:11211']
+```
+
 ## License
 
 Blablacar Memcached bundle is released under the MIT License. See the bundled
