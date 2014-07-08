@@ -2,9 +2,10 @@
 
 namespace Blablacar\MemcachedBundle\DependencyInjection;
 
+use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 
-class Configuration
+class Configuration implements ConfigurationInterface
 {
     /**
      * Generates the configuration tree.
@@ -26,11 +27,7 @@ class Configuration
                         ->children()
                             ->scalarNode('persistent_id')->defaultValue(null)->end()
                             ->arrayNode('servers')
-                                ->children()
-                                    ->prototype('scalar')->defaultValue('127.0.0.1')->cannotBeEmpty()->end()
-                                    ->prototype('integer')->defaultValue(11211)->cannotBeEmpty()->end()
-                                    ->prototype('integer')->defaultValue(null)->end()
-                                ->end()
+                                ->prototype('scalar')->defaultValue('127.0.0.1:11211')->cannotBeEmpty()->end()
                             ->end()
                         ->end()
                     ->end()
