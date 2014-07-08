@@ -28,7 +28,7 @@ class MemcachedDataCollector extends DataCollector
                     'arguments'  => implode(', ', $command['arguments']),
                     'duration'   => $command['duration'],
                     'connection' => $name,
-                    'return'     => $command['return']
+                    'return'     => implode(', ', $command['return'])
                 );
             }
 

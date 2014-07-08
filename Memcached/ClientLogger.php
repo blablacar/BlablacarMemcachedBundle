@@ -70,26 +70,20 @@ class ClientLogger extends Client
      * flatten
      *
      * @param mixed $arguments
+     * @param array $list
      *
      * @return array
      */
-    protected function flatten($arguments)
+    protected function flatten($arguments, array &$list = array())
     {
-        $list = [];
-
-        if (null === $arguments) {
-            return "null";
-        }
-        if (is_bool($arguments)) {
-            return $arguments ? "true" : "false";
-        }
-
-        foreach ($arguments as $key => $item) {
+        foreach ((array) $arguments as $key => $item) {
             if (!is_numeric($key)) {
                 $list[] = $key;
             }
 
-            if (is_scalar($item)) {
+            if (is_bool($item)) {
+                $list[] = $item ? 'true' : 'false';
+            } elseif (is_scalar($item)) {
                 $list[] = strval($item);
             } elseif (null === $item) {
                 $list[] = '<null>';
