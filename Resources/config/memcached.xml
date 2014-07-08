@@ -7,7 +7,7 @@
     </parameters>
 
     <services>
-        <service id="blablacar_memcached.client.base" class="%blablacar_memcached.client.base.class%">
+        <service id="blablacar_memcached.client.base" class="%blablacar_memcached.client.base.class%" abstract="true">
             <argument></argument>
         </service>
     </services>
