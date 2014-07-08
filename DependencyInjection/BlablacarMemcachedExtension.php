@@ -32,10 +32,16 @@ class BlablacarMemcachedExtension extends Extension
         foreach ($config['clients'] as $name => $clientConfig) {
             $id = sprintf('blablacar_memcached.client.%s', $name);
 
+            $servers = [];
+            foreach ($clientConfig['servers'] as $server) {
+                $parts = explode(':', $server);
+                $servers[] = [$parts[0], isset($parts[1])? $parts[1] : 11211];
+            }
+
             $baseClientDefinition = new DefinitionDecorator('blablacar_memcached.client.base');
             $baseClientDefinition
                 ->replaceArgument(0, $clientConfig['persistent_id'])
-                ->addMethodCall('addServers', array($clientConfig['servers']))
+                ->addMethodCall('addServers', array($servers))
             ;
 
             if (!$debug) {
