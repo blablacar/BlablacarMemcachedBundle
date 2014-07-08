@@ -61,6 +61,10 @@ class MemcachedDataCollector extends DataCollector
      */
     public function getDuration()
     {
+        if (null === $this->data) {
+            return 0;
+        }
+
         $time = 0;
         foreach ($this->data as $data) {
             $time += $data['duration'];
