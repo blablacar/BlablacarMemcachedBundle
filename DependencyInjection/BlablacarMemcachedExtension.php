@@ -44,6 +44,12 @@ class BlablacarMemcachedExtension extends Extension
                 ->addMethodCall('addServers', array($servers))
             ;
 
+            foreach ($clientConfig['options'] as $option => $value) {
+                if (null !== $option = constant('\Memcached::'.$option)) {
+                    $baseClientDefinition->addMethodCall('setOption', array($option, $value));
+                }
+            }
+
             if (!$debug) {
                 $container->setDefinition($id, $baseClientDefinition);
             } else {
