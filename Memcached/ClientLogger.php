@@ -40,7 +40,7 @@ class ClientLogger extends Client
             'name'      => $name,
             'arguments' => $this->flatten($arguments),
             'duration'  => $duration,
-            'return'    => $this->flatten($return)
+            'return'    => $this->clean($return)
         );
 
         return $return;
@@ -76,22 +76,43 @@ class ClientLogger extends Client
      */
     protected function flatten($arguments, array &$list = array())
     {
+        $list = array();
         foreach ((array) $arguments as $key => $item) {
             if (!is_numeric($key)) {
                 $list[] = $key;
             }
 
-            if (is_bool($item)) {
-                $list[] = $item ? 'true' : 'false';
-            } elseif (is_scalar($item)) {
-                $list[] = strval($item);
-            } elseif (null === $item) {
-                $list[] = '<null>';
-            } else {
-                $this->flatten($item, $list);
-            }
+            $list = $this->clean($item);
         }
 
         return $list;
+    }
+
+    /**
+     * clean
+     *
+     * @param mixed $argument
+     *
+     * @return string
+     */
+    protected function clean($argument)
+    {
+        if (is_bool($argument)) {
+            return $argument ? 'true' : 'false';
+        }
+        if (is_scalar($argument)) {
+            return strval($argument);
+        }
+        if (null === $argument) {
+            return '<null>';
+        }
+        if (is_object($argument)) {
+            return get_class($argument);
+        }
+        if (is_array($argument)) {
+            return '<array>';
+        }
+
+        return '<unknown>';
     }
 }
