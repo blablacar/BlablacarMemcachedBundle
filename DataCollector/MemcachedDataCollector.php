@@ -25,10 +25,10 @@ class MemcachedDataCollector extends DataCollector
             foreach ($client->getCommands() as $command) {
                 $this->data[] = array(
                     'command'    => $command['name'],
-                    'arguments'  => implode(', ', $command['arguments']),
+                    'arguments'  => is_array($command['arguments']) ? implode(', ', $command['arguments']) : (string) $command['arguments'],
                     'duration'   => $command['duration'],
                     'connection' => $name,
-                    'return'     => implode(', ', $command['return'])
+                    'return'     => is_array($command['return'])? implode(', ', $command['return']) : (string) $command['return']
                 );
             }
 
