@@ -2,10 +2,9 @@
 
 namespace Blablacar\MemcachedBundle\Tests\DependencyInjection;
 
-use Blablacar\MemcachedBundle\Tests\TestCase;
 use Blablacar\MemcachedBundle\DependencyInjection\BlablacarMemcachedExtension;
 
-class BlablacarMemcachedExtensionTest extends TestCase
+class BlablacarMemcachedExtensionTest extends \PHPUnit_Framework_TestCase
 {
     public function test_it_is_initilizable()
     {
