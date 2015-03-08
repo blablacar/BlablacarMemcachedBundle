@@ -17,7 +17,8 @@
         "phpunit/phpunit": "~4.5",
         "symfony/http-kernel": "@stable",
         "symfony/config": "@stable",
-        "symfony/dependency-injection": "@stable"
+        "symfony/dependency-injection": "@stable",
+        "fabpot/php-cs-fixer": "~1.5"
     },
     "autoload": {
         "psr-0": {

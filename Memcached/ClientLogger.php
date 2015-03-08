@@ -11,11 +11,9 @@ class ClientLogger extends Client
     protected $commands = array();
 
     /**
-     * __construct
+     * __construct.
      *
      * @param Client $client
-     *
-     * @return void
      */
     public function __construct(Client $client)
     {
@@ -23,7 +21,7 @@ class ClientLogger extends Client
     }
 
     /**
-     * __call
+     * __call.
      *
      * @param string $name
      * @param array  $arguments
@@ -40,14 +38,14 @@ class ClientLogger extends Client
             'name'      => $name,
             'arguments' => $this->flatten($arguments),
             'duration'  => $duration,
-            'return'    => $this->clean($return)
+            'return'    => $this->clean($return),
         );
 
         return $return;
     }
 
     /**
-     * getCommands
+     * getCommands.
      *
      * @return array
      */
@@ -57,9 +55,7 @@ class ClientLogger extends Client
     }
 
     /**
-     * reset
-     *
-     * @return void
+     * reset.
      */
     public function reset()
     {
@@ -67,7 +63,7 @@ class ClientLogger extends Client
     }
 
     /**
-     * flatten
+     * flatten.
      *
      * @param mixed $arguments
      * @param array $list
@@ -89,7 +85,7 @@ class ClientLogger extends Client
     }
 
     /**
-     * clean
+     * clean.
      *
      * @param mixed $argument
      *

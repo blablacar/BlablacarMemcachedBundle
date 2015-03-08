@@ -22,7 +22,7 @@ class BlablacarMemcachedExtension extends Extension
 
         $config = $processor->processConfiguration($configuration, $configs);
 
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('memcached.xml');
 
         if ($debug = $container->getParameter('kernel.debug')) {
@@ -35,7 +35,7 @@ class BlablacarMemcachedExtension extends Extension
             $servers = [];
             foreach ($clientConfig['servers'] as $server) {
                 $parts = explode(':', $server);
-                $servers[] = [$parts[0], isset($parts[1])? $parts[1] : 11211];
+                $servers[] = [$parts[0], isset($parts[1]) ? $parts[1] : 11211];
             }
 
             $baseClientDefinition = new DefinitionDecorator('blablacar_memcached.client.base');
