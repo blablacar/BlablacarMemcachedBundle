@@ -37,6 +37,14 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
+                ->arrayNode('session')
+                    ->canBeUnset()
+                    ->children()
+                        ->scalarNode('client')->isRequired()->end()
+                        ->scalarNode('prefix')->defaultValue('session')->cannotBeEmpty()->end()
+                        ->integerNode('ttl')->end()
+                    ->end()
+                ->end()
             ->end()
         ;
 

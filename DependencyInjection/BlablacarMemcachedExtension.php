@@ -65,5 +65,16 @@ class BlablacarMemcachedExtension extends Extension
                 ;
             }
         }
+
+        if (isset($config['session'])) {
+            $loader->load('session.xml');
+
+            $ttl = isset($config['session']['ttl']) ? $config['session']['ttl'] : null;
+
+            $container->setParameter('blablacar_memcached.session.prefix', $config['session']['prefix']);
+            $container->setParameter('blablacar_memcached.session.ttl', $ttl);
+            $client = sprintf('blablacar_memcached.client.%s', $config['session']['client']);
+            $container->setAlias('blablacar_memcached.session.client', $client);
+        }
     }
 }
