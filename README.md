@@ -7,20 +7,9 @@ A bundle to use memcached inside your Symfony2 application
 ## Installation
 
 The recommended way to install this bundle is through
-[Composer](http://getcomposer.org/). Require the `blablacar/memcached-bundle`
-package into your `composer.json` file:
+[Composer](http://getcomposer.org/).
 
-```json
-{
-    "require": {
-        "blablacar/memcached-bundle": "@stable"
-    }
-}
-```
-
-**Protip:** you should browse the
-[`blablacar/memcached-bundle`](https://packagist.org/packages/blablacar/memcached-bundle)
-page to choose a stable version to use, avoid the `@stable` meta constraint.
+    composer require blablacar/memcached-bundle
 
 Update `app/AppKernel.php`:
 
@@ -36,14 +25,29 @@ public function registerBundles()
 }
 ```
 
+If you want to use the memcached session handler add the relevant config (see next section) and update your `app/config/config.yml` file:
+
+```yml
+framework:
+    session:
+        handler_id:  blablacar_memcached.session_handler
+```
+
 ## Configuration reference
 
 ```yml
 blablacar_memcached:
-    clients:
-        my_client_name:
-            persistent_id: ~
-            servers:       ['127.0.0.1:11211']
+    clients:              # Required
+
+        # Prototype
+        name:
+            persistent_id:        null
+            servers:              [] # Required
+            options:              []
+    session:
+        client:               ~ # Required
+        prefix:               session
+        ttl:                  ~
 ```
 
 ## License

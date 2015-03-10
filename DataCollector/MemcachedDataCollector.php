@@ -28,7 +28,7 @@ class MemcachedDataCollector extends DataCollector
                     'arguments'  => is_array($command['arguments']) ? implode(', ', $command['arguments']) : (string) $command['arguments'],
                     'duration'   => $command['duration'],
                     'connection' => $name,
-                    'return'     => is_array($command['return'])? implode(', ', $command['return']) : (string) $command['return']
+                    'return'     => is_array($command['return']) ? implode(', ', $command['return']) : (string) $command['return'],
                 );
             }
 
@@ -45,7 +45,7 @@ class MemcachedDataCollector extends DataCollector
     }
 
     /**
-     * getCommands
+     * getCommands.
      *
      * @return array
      */
@@ -55,7 +55,7 @@ class MemcachedDataCollector extends DataCollector
     }
 
     /**
-     * getDuration
+     * getDuration.
      *
      * @return int
      */

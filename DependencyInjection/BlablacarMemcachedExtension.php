@@ -22,7 +22,7 @@ class BlablacarMemcachedExtension extends Extension
 
         $config = $processor->processConfiguration($configuration, $configs);
 
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('memcached.xml');
 
         if ($debug = $container->getParameter('kernel.debug')) {
@@ -35,7 +35,7 @@ class BlablacarMemcachedExtension extends Extension
             $servers = [];
             foreach ($clientConfig['servers'] as $server) {
                 $parts = explode(':', $server);
-                $servers[] = [$parts[0], isset($parts[1])? $parts[1] : 11211];
+                $servers[] = [$parts[0], isset($parts[1]) ? $parts[1] : 11211];
             }
 
             $baseClientDefinition = new DefinitionDecorator('blablacar_memcached.client.base');
@@ -64,6 +64,17 @@ class BlablacarMemcachedExtension extends Extension
                     ->addMethodCall('addClient', array($name, new Reference($id)))
                 ;
             }
+        }
+
+        if (isset($config['session'])) {
+            $loader->load('session.xml');
+
+            $ttl = isset($config['session']['ttl']) ? $config['session']['ttl'] : null;
+
+            $container->setParameter('blablacar_memcached.session.prefix', $config['session']['prefix']);
+            $container->setParameter('blablacar_memcached.session.ttl', $ttl);
+            $client = sprintf('blablacar_memcached.client.%s', $config['session']['client']);
+            $container->setAlias('blablacar_memcached.session.client', $client);
         }
     }
 }

@@ -11,22 +11,14 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "blablacar/memcached-client": "~1.0"
+        "blablacar/memcached-client": "~1.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "~3.7",
-        "phpspec/prophecy": "~1.1",
+        "phpunit/phpunit": "~4.5",
         "symfony/http-kernel": "@stable",
         "symfony/config": "@stable",
-        "symfony/dependency-injection": "@stable"
-    },
-    "autoload": {
-        "psr-0": {
-            "Blablacar": "src"
-        }
-    },
-    "config": {
-        "bin-dir": "bin"
+        "symfony/dependency-injection": "@stable",
+        "fabpot/php-cs-fixer": "~1.5"
     },
     "autoload": {
         "psr-0": { "Blablacar\\MemcachedBundle": "" }

@@ -2,14 +2,13 @@
 
 namespace Blablacar\MemcachedBundle\Tests\Memcached;
 
-use Blablacar\MemcachedBundle\Tests\TestCase;
 use Blablacar\MemcachedBundle\Memcached\ClientLogger;
 
-class ClientLoggerTest extends TestCase
+class ClientLoggerTest extends \PHPUnit_Framework_TestCase
 {
     public function test_it_is_initilizable()
     {
-        $client = $this->prophet->prophesize('Blablacar\Memcached\Client');
+        $client = $this->prophesize('Blablacar\Memcached\Client');
 
         $this->assertInstanceOf(
             'Blablacar\MemcachedBundle\Memcached\ClientLogger',
