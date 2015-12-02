@@ -41,7 +41,7 @@
             {% for command in collector.commands %}
                 <li class="{{ cycle(['odd', 'even'], loop.index) }}">
                     <div>
-                        <code><strong>Command</strong>: {{ command.command|upper }} {{ command.arguments }}</ code><br />
+                        <code><strong>Command</strong>: {{ command.command|upper }} {{ command.arguments }}</code><br />
                         <code><strong>Return</strong>: {{ command.return }}</code>
                     </div>
                     <small>
