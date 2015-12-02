@@ -78,7 +78,7 @@ class ClientLogger extends Client
                 $list[] = $key;
             }
 
-            $list = $this->clean($item);
+            $list[] = $this->clean($item);
         }
 
         return $list;
